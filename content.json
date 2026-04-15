@@ -20,15 +20,16 @@
     "title": "Balsas ir Galutinis rezultatas",
     "description": "Balsas sugeneruotas per ElevenLabs, o viskas apjungta į kalbantį avatarą su HeyGen.",
     "transcript": "Ilgai dvejojau, bet FastTrack buvo geriausias pasirinkimas. Atėjau visiškai žalias, žinodamas tik GPT ir Office, bet DI naujovės tiesiog išjudino mano sukietėjusias smegenis. Nors trūko anglų kalbos žinių, su LLM pagalba išmokau apjungti įrankius į veikiančias sistemas. Nesigailiu nei minutės. Nuoširdžiai dėkoju mokytojui Deividui už suteiktas žinias ir kantrybę. Ačiū.",
-    "audioTitle": "Audio takelis"
+    "audioTitle": "Audio takelis",
+    "videoTitle": "O štai ir mūsų per HeyGen sukurtas kalbantis avataras"
   },
   "step4": {
     "title": "Svetainės programavimas su „Cursor“",
     "description": "Paskutinis akordas - visų sugeneruotų elementų apjungimas į šią interaktyvią svetainę naudojant Cursor redaktorių. LLM asistento pagalba leido sukurti dizainą ir animacijas be gilių programavimo žinių."
   },
   "step5": {
-    "title": "Klausk AI apie šią temą",
-    "description": "Įrašyk klausimą apie šiame puslapyje aptariamą temą. AI atsakys tik apie avataro kūrimo procesą, FastTrack mokymąsi ir naudojamus įrankius.",
+    "title": "Noriu paklausti...",
+    "description": "Gal turite mums klausimų šia tema? Mielai atsakysime.",
     "questionLabel": "Tavo klausimas",
     "questionPlaceholder": "Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?",
     "buttonLabel": "Gauti atsakymą",

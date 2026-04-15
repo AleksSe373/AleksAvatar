@@ -137,6 +137,7 @@
 
                     <!-- Video dalis -->
                     <div class="flex-[2] w-full aspect-video bg-black rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)] border border-blue-500/30 relative">
+                        <h3 id="step3-video-title" class="text-lg font-semibold px-4 pt-4 text-center text-purple-300">O štai ir mūsų per HeyGen sukurtas kalbantis avataras</h3>
                         <video controls preload="metadata" poster="Gemini_Avatar.png" class="w-full h-full object-cover" aria-label="Galutinis AI avataro video">
                             <source src="AleksAvatar.mp4" type="video/mp4">
                             Jūsų naršyklė nepalaiko video elemento.
@@ -178,10 +179,9 @@
         <section class="fade-in-section">
             <div class="glass-card rounded-2xl p-8 border-t-4 border-t-emerald-500 hover:bg-white/10 transition duration-300">
                 <div class="text-center mb-6">
-                    <span class="text-emerald-400 font-bold tracking-wider uppercase text-sm">5 Žingsnis</span>
-                    <h2 id="step5-title" class="text-3xl font-bold mt-2 mb-4">Klausk AI apie šią temą</h2>
+                    <h2 id="step5-title" class="text-2xl font-bold mb-4">Noriu paklausti...</h2>
                     <p id="step5-description" class="text-gray-300 max-w-2xl mx-auto">
-                        Įrašyk klausimą apie šiame puslapyje aptariamą temą. AI atsakys tik apie avataro kūrimo procesą, FastTrack mokymąsi ir naudojamus įrankius.
+                        Gal turite mums klausimų šia tema? Mielai atsakysime.
                     </p>
                 </div>
 
@@ -293,6 +293,7 @@
             const step3Description = document.getElementById("step3-description");
             const step3Transcript = document.getElementById("step3-transcript");
             const step3AudioTitle = document.getElementById("step3-audio-title");
+            const step3VideoTitle = document.getElementById("step3-video-title");
             const step4Title = document.getElementById("step4-title");
             const step4Description = document.getElementById("step4-description");
             const step5Title = document.getElementById("step5-title");
@@ -373,6 +374,7 @@
                     if (step3Description && content.step3?.description) step3Description.textContent = content.step3.description;
                     if (step3Transcript && content.step3?.transcript) step3Transcript.textContent = `„${content.step3.transcript}”`;
                     if (step3AudioTitle && content.step3?.audioTitle) step3AudioTitle.textContent = content.step3.audioTitle;
+                    if (step3VideoTitle && content.step3?.videoTitle) step3VideoTitle.textContent = content.step3.videoTitle;
 
                     if (step4Title && content.step4?.title) step4Title.textContent = content.step4.title;
                     if (step4Description && content.step4?.description) step4Description.textContent = content.step4.description;
