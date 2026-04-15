@@ -1,5 +1,44 @@
 {
-  "step1Intro": "Pradžia - aiškios temos pasirinkimas. Pirmiausia apsibrėžiame žinutę, tikslą ir auditoriją, kad visi tolimesni žingsniai (vaizdas, balsas, video ir svetainė) turėtų vieningą kryptį.",
-  "step1Expanded": "Šio projekto tema - asmeninė kelionė nuo pradinio neapsisprendimo iki veikiančio AI avataro sukūrimo. Pagrindinis fokusas yra praktinis mokymasis FastTrack aplinkoje: temos pasirinkimas, AI vaizdo generavimas su Gemini, balso kūrimas su ElevenLabs, kalbančio avataro formavimas su HeyGen ir galutinis sprendimo pateikimas internetinėje svetainėje su Cursor. Esminė žinutė: net ir pradedant nuo minimalių žinių, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia sukurti realų, veikiantį rezultatą.",
-  "conclusion": "Per šį projektą aiškiai matomas visas kelias – nuo pradinės idėjos iki pilnai veikiančio AI avataro su balsu, video ir pristatomąja svetaine. Projektas parodo, kad net neturint didelės pradinės patirties, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia greitai pasiekti tinkamą rezultatą. Didžiausia vertė slypi ne tik galutiniame rezultate, bet ir pačiame procese bei kiekviename žingsnyje."
+  "hero": {
+    "title": "AI Avataro Kūrimo Procesas",
+    "subtitle": "Nuo paviršutiniškų žinių iki veikiančių sistemų su „FastTrack“.",
+    "cta": "Peržiūrėti procesą"
+  },
+  "step1": {
+    "title": "Temos pasirinkimas",
+    "intro": "Pradžia - aiškios temos pasirinkimas. Pirmiausia apsibrėžiame žinutę, tikslą ir auditoriją, kad visi tolimesni žingsniai (vaizdas, balsas, video ir svetainė) turėtų vieningą kryptį.",
+    "expanded": "Šio projekto tema - asmeninė kelionė nuo pradinio neapsisprendimo iki veikiančio AI avataro sukūrimo. Pagrindinis fokusas yra praktinis mokymasis FastTrack aplinkoje: temos pasirinkimas, AI vaizdo generavimas su Gemini, balso kūrimas su ElevenLabs, kalbančio avataro formavimas su HeyGen ir galutinis sprendimo pateikimas internetinėje svetainėje su Cursor. Esminė žinutė: net ir pradedant nuo minimalių žinių, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia sukurti realų, veikiantį rezultatą.",
+    "expandLabel": "Išskleisti temos tekstą",
+    "collapseLabel": "Suskleisti temos tekstą"
+  },
+  "step2": {
+    "title": "Vaizdo kūrimas",
+    "description": "Sukurta naudojant AI vaizdų generatorius (Gemini). Tai yra mūsų avataro vizualinis pagrindas.",
+    "hint": "Spustelėk nuotrauką, kad pamatytum per visą ekraną! 🔍"
+  },
+  "step3": {
+    "title": "Balsas ir Galutinis rezultatas",
+    "description": "Balsas sugeneruotas per ElevenLabs, o viskas apjungta į kalbantį avatarą su HeyGen.",
+    "transcript": "Ilgai dvejojau, bet FastTrack buvo geriausias pasirinkimas. Atėjau visiškai žalias, žinodamas tik GPT ir Office, bet DI naujovės tiesiog išjudino mano sukietėjusias smegenis. Nors trūko anglų kalbos žinių, su LLM pagalba išmokau apjungti įrankius į veikiančias sistemas. Nesigailiu nei minutės. Nuoširdžiai dėkoju mokytojui Deividui už suteiktas žinias ir kantrybę. Ačiū.",
+    "audioTitle": "Audio takelis"
+  },
+  "step4": {
+    "title": "Svetainės programavimas su „Cursor“",
+    "description": "Paskutinis akordas - visų sugeneruotų elementų apjungimas į šią interaktyvią svetainę naudojant Cursor redaktorių. LLM asistento pagalba leido sukurti dizainą ir animacijas be gilių programavimo žinių."
+  },
+  "step5": {
+    "title": "Klausk AI apie šią temą",
+    "description": "Įrašyk klausimą apie šiame puslapyje aptariamą temą. AI atsakys tik apie avataro kūrimo procesą, FastTrack mokymąsi ir naudojamus įrankius.",
+    "questionLabel": "Tavo klausimas",
+    "questionPlaceholder": "Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?",
+    "buttonLabel": "Gauti atsakymą",
+    "note": "AI atsakymai generuojami per atskirą serverio API. Klausimai ne į šio projekto temą bus atmesti."
+  },
+  "conclusion": {
+    "title": "Išvada",
+    "text": "Per šį projektą aiškiai matomas visas kelias – nuo pradinės idėjos iki pilnai veikiančio AI avataro su balsu, video ir pristatomąja svetaine. Projektas parodo, kad net neturint didelės pradinės patirties, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia greitai pasiekti tinkamą rezultatą. Didžiausia vertė slypi ne tik galutiniame rezultate, bet ir pačiame procese bei kiekviename žingsnyje."
+  },
+  "footer": {
+    "text": "Sukurta pritaikant LLM technologijas | 2026"
+  }
 }

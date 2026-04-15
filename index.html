@@ -49,13 +49,13 @@
 
     <!-- Hero Sekcija (Pradžia) -->
     <header class="min-h-[80vh] flex flex-col justify-center items-center text-center p-6 fade-in-section">
-        <h1 class="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+        <h1 id="hero-title" class="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
             AI Avataro Kūrimo Procesas
         </h1>
-        <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl">
+        <p id="hero-subtitle" class="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl">
             Nuo paviršutiniškų žinių iki veikiančių sistemų su „FastTrack“.
         </p>
-        <a href="#procesas" class="px-8 py-3 bg-blue-600 hover:bg-blue-500 rounded-full text-white font-semibold transition duration-300 shadow-[0_0_15px_rgba(37,99,235,0.5)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-900">
+        <a id="hero-cta" href="#procesas" class="px-8 py-3 bg-blue-600 hover:bg-blue-500 rounded-full text-white font-semibold transition duration-300 shadow-[0_0_15px_rgba(37,99,235,0.5)] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-900">
             Peržiūrėti procesą
         </a>
     </header>
@@ -68,7 +68,7 @@
             <div class="glass-card rounded-2xl p-8 hover:bg-white/10 transition duration-300 border-t-4 border-t-cyan-500">
                 <div class="text-center">
                     <span class="text-cyan-400 font-bold tracking-wider uppercase text-sm">1 Žingsnis</span>
-                    <h2 class="text-3xl font-bold mt-2 mb-4">Temos pasirinkimas</h2>
+                    <h2 id="step1-title" class="text-3xl font-bold mt-2 mb-4">Temos pasirinkimas</h2>
                     <p id="step1-intro-text" class="text-gray-300 max-w-2xl mx-auto">
                         Pradžia - aiškios temos pasirinkimas. Pirmiausia apsibrėžiame žinutę, tikslą ir auditoriją, kad visi tolimesni žingsniai (vaizdas, balsas, video ir svetainė) turėtų vieningą kryptį.
                     </p>
@@ -92,10 +92,10 @@
                 <div class="flex flex-col items-center gap-8">
                     <div class="w-full text-center">
                         <span class="text-blue-400 font-bold tracking-wider uppercase text-sm">2 Žingsnis</span>
-                        <h2 class="text-3xl font-bold mt-2 mb-4">Vaizdo kūrimas</h2>
-                        <p class="text-gray-300">
-                            Sukurta naudojant AI vaizdų generatorius (Gemini). Tai yra mūsų avataro vizualinis pagrindas.
-                            <br><span class="text-sm text-blue-300 mt-2 inline-block">Spustelėk nuotrauką, kad pamatytum per visą ekraną! 🔍</span>
+                        <h2 id="step2-title" class="text-3xl font-bold mt-2 mb-4">Vaizdo kūrimas</h2>
+                        <p id="step2-description" class="text-gray-300">
+                            <span id="step2-main-text">Sukurta naudojant AI vaizdų generatorius (Gemini). Tai yra mūsų avataro vizualinis pagrindas.</span>
+                            <br><span id="step2-hint" class="text-sm text-blue-300 mt-2 inline-block">Spustelėk nuotrauką, kad pamatytum per visą ekraną! 🔍</span>
                         </p>
                     </div>
                     <button class="w-full cursor-zoom-in group relative p-1 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 shadow-[0_0_40px_rgba(59,130,246,0.7)] hover:shadow-[0_0_60px_rgba(168,85,247,0.8)] transition-all duration-500 text-left focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-slate-900" id="avatar-container" type="button" aria-label="Atidaryti avataro nuotrauką per visą ekraną">
@@ -111,21 +111,21 @@
             <div class="glass-card rounded-2xl p-8 border-t-4 border-t-purple-500 hover:bg-white/10 transition duration-300">
                 <div class="text-center mb-8">
                     <span class="text-purple-400 font-bold tracking-wider uppercase text-sm">3 Žingsnis</span>
-                    <h2 class="text-3xl font-bold mt-2 mb-4">Balsas ir Galutinis rezultatas</h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto mb-6">
+                    <h2 id="step3-title" class="text-3xl font-bold mt-2 mb-4">Balsas ir Galutinis rezultatas</h2>
+                    <p id="step3-description" class="text-gray-300 max-w-2xl mx-auto mb-6">
                         Balsas sugeneruotas per <strong>ElevenLabs</strong>, o viskas apjungta į kalbantį avatarą su <strong>HeyGen</strong>.
                     </p>
 
                     <!-- Transkripcija matoma iš karto -->
                     <div class="bg-black/40 p-5 rounded-lg border-l-4 border-purple-500 italic text-gray-300 text-sm max-w-3xl mx-auto text-left mb-8 shadow-inner">
-                        „Ilgai dvejojau, bet FastTrack buvo geriausias pasirinkimas. Atėjau visiškai žalias, žinodamas tik GPT ir Office, bet DI naujovės tiesiog išjudino mano sukietėjusias smegenis. Nors trūko anglų kalbos žinių, su LLM pagalba išmokau apjungti įrankius į veikiančias sistemas. Nesigailiu nei minutės. Nuoširdžiai dėkoju mokytojui Deividui už suteiktas žinias ir kantrybę. Ačiū.“
+                        <p id="step3-transcript">„Ilgai dvejojau, bet FastTrack buvo geriausias pasirinkimas. Atėjau visiškai žalias, žinodamas tik GPT ir Office, bet DI naujovės tiesiog išjudino mano sukietėjusias smegenis. Nors trūko anglų kalbos žinių, su LLM pagalba išmokau apjungti įrankius į veikiančias sistemas. Nesigailiu nei minutės. Nuoširdžiai dėkoju mokytojui Deividui už suteiktas žinias ir kantrybę. Ačiū.“</p>
                     </div>
                 </div>
 
                 <div class="flex flex-col md:flex-row gap-6">
                     <!-- Audio dalis -->
                     <div class="flex-1 bg-black/30 p-6 rounded-xl border border-gray-700 flex flex-col justify-center">
-                        <h3 class="text-lg font-semibold mb-4 text-center text-blue-300">Audio takelis</h3>
+                        <h3 id="step3-audio-title" class="text-lg font-semibold mb-4 text-center text-blue-300">Audio takelis</h3>
                         <audio controls preload="metadata" class="w-full">
                             <!-- Originalus failas -->
                             <source src="ElevenLabs_audio.mp3" type="audio/mpeg">
@@ -152,8 +152,8 @@
                 <div class="flex flex-col md:flex-row items-center gap-8">
                     <div class="flex-1">
                         <span class="text-orange-400 font-bold tracking-wider uppercase text-sm">4 Žingsnis</span>
-                        <h2 class="text-3xl font-bold mt-2 mb-4">Svetainės programavimas su „Cursor“</h2>
-                        <p class="text-gray-300">
+                        <h2 id="step4-title" class="text-3xl font-bold mt-2 mb-4">Svetainės programavimas su „Cursor“</h2>
+                        <p id="step4-description" class="text-gray-300">
                             Paskutinis akordas - visų sugeneruotų elementų apjungimas į šią interaktyvią svetainę naudojant <strong>Cursor</strong> redaktorių. LLM asistento pagalba leido sukurti dizainą ir animacijas be gilių programavimo žinių.
                         </p>
                     </div>
@@ -179,15 +179,15 @@
             <div class="glass-card rounded-2xl p-8 border-t-4 border-t-emerald-500 hover:bg-white/10 transition duration-300">
                 <div class="text-center mb-6">
                     <span class="text-emerald-400 font-bold tracking-wider uppercase text-sm">5 Žingsnis</span>
-                    <h2 class="text-3xl font-bold mt-2 mb-4">Klausk AI apie šią temą</h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto">
+                    <h2 id="step5-title" class="text-3xl font-bold mt-2 mb-4">Klausk AI apie šią temą</h2>
+                    <p id="step5-description" class="text-gray-300 max-w-2xl mx-auto">
                         Įrašyk klausimą apie šiame puslapyje aptariamą temą. AI atsakys tik apie avataro kūrimo procesą, FastTrack mokymąsi ir naudojamus įrankius.
                     </p>
                 </div>
 
                 <div class="space-y-4">
                     <label class="block">
-                        <span class="text-sm text-gray-300">Tavo klausimas</span>
+                        <span id="step5-question-label" class="text-sm text-gray-300">Tavo klausimas</span>
                         <textarea id="topic-question" rows="4" placeholder="Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?" class="mt-1 w-full rounded-lg bg-black/30 border border-gray-700 px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
                     </label>
 
@@ -199,7 +199,7 @@
                     </div>
 
                     <div id="ai-answer-box" class="hidden bg-black/40 p-5 rounded-lg border-l-4 border-emerald-500 text-gray-200 leading-relaxed"></div>
-                    <p class="text-xs text-gray-500">
+                    <p id="step5-note" class="text-xs text-gray-500">
                         AI atsakymai generuojami per atskirą serverio API. Klausimai ne į šio projekto temą bus atmesti.
                     </p>
                 </div>
@@ -212,7 +212,7 @@
                 <!-- Dekoratyvinis elementas -->
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
 
-                <h3 class="text-2xl font-bold mb-4">Išvada</h3>
+                <h3 id="conclusion-title" class="text-2xl font-bold mb-4">Išvada</h3>
                 <p id="conclusion-text" class="text-lg text-gray-200 italic max-w-3xl mx-auto">
                     Per šį projektą aiškiai matomas visas kelias – nuo pradinės idėjos iki pilnai veikiančio AI avataro su balsu, video ir pristatomąja svetaine. Projektas parodo, kad net neturint didelės pradinės patirties, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia greitai pasiekti tinkamą rezultatą. Didžiausia vertė slypi ne tik galutiniame rezultate, bet ir pačiame procese bei kiekviename žingsnyje.
                 </p>
@@ -222,7 +222,7 @@
     </main>
 
     <footer class="text-center p-6 text-gray-500 text-sm">
-        <p>Sukurta pritaikant LLM technologijas | 2026</p>
+        <p id="footer-text">Sukurta pritaikant LLM technologijas | 2026</p>
     </footer>
 
     <!-- Lightbox (Per visą ekraną atsidaranti nuotrauka paspaudus) -->
@@ -268,13 +268,33 @@
             const questionInput = document.getElementById("topic-question");
             const aiAnswerBox = document.getElementById("ai-answer-box");
             const aiStatus = document.getElementById("ai-status");
+            const heroTitle = document.getElementById("hero-title");
+            const heroSubtitle = document.getElementById("hero-subtitle");
+            const heroCta = document.getElementById("hero-cta");
             const step1ToggleBtn = document.getElementById("step1-toggle-btn");
             const step1ExpandableContent = document.getElementById("step1-expandable-content");
+            const step1Title = document.getElementById("step1-title");
             const step1IntroText = document.getElementById("step1-intro-text");
             const step1SourceText = document.getElementById("step1-source-text");
+            const step2Title = document.getElementById("step2-title");
+            const step2MainText = document.getElementById("step2-main-text");
+            const step2Hint = document.getElementById("step2-hint");
+            const step3Title = document.getElementById("step3-title");
+            const step3Description = document.getElementById("step3-description");
+            const step3Transcript = document.getElementById("step3-transcript");
+            const step3AudioTitle = document.getElementById("step3-audio-title");
+            const step4Title = document.getElementById("step4-title");
+            const step4Description = document.getElementById("step4-description");
+            const step5Title = document.getElementById("step5-title");
+            const step5Description = document.getElementById("step5-description");
+            const step5QuestionLabel = document.getElementById("step5-question-label");
+            const step5Note = document.getElementById("step5-note");
+            const conclusionTitle = document.getElementById("conclusion-title");
             const conclusionText = document.getElementById("conclusion-text");
+            const footerText = document.getElementById("footer-text");
             const backendApiUrl = "https://aleks-avatar.netlify.app/.netlify/functions/ask";
             let projectContextText = step1SourceText ? step1SourceText.textContent.trim() : "";
+            let toggleLabels = { expand: "Išskleisti temos tekstą", collapse: "Suskleisti temos tekstą" };
 
             const allowedTopicKeywords = [
                 "ai",
@@ -304,17 +324,43 @@
                     }
                     const content = await response.json();
 
-                    if (step1IntroText && content.step1Intro) {
-                        step1IntroText.textContent = content.step1Intro;
-                    }
-                    if (step1SourceText && content.step1Expanded) {
-                        step1SourceText.textContent = content.step1Expanded;
-                    }
-                    if (conclusionText && content.conclusion) {
-                        conclusionText.textContent = content.conclusion;
-                    }
+                    if (heroTitle && content.hero?.title) heroTitle.textContent = content.hero.title;
+                    if (heroSubtitle && content.hero?.subtitle) heroSubtitle.textContent = content.hero.subtitle;
+                    if (heroCta && content.hero?.cta) heroCta.textContent = content.hero.cta;
 
-                    const contextParts = [content.step1Intro, content.step1Expanded, content.conclusion].filter(Boolean);
+                    if (step1Title && content.step1?.title) step1Title.textContent = content.step1.title;
+                    if (step1IntroText && content.step1?.intro) step1IntroText.textContent = content.step1.intro;
+                    if (step1SourceText && content.step1?.expanded) step1SourceText.textContent = content.step1.expanded;
+                    if (step1ToggleBtn && content.step1?.expandLabel) step1ToggleBtn.textContent = content.step1.expandLabel;
+                    toggleLabels = {
+                        expand: content.step1?.expandLabel || toggleLabels.expand,
+                        collapse: content.step1?.collapseLabel || toggleLabels.collapse
+                    };
+
+                    if (step2Title && content.step2?.title) step2Title.textContent = content.step2.title;
+                    if (step2MainText && content.step2?.description) step2MainText.textContent = content.step2.description;
+                    if (step2Hint && content.step2?.hint) step2Hint.textContent = content.step2.hint;
+
+                    if (step3Title && content.step3?.title) step3Title.textContent = content.step3.title;
+                    if (step3Description && content.step3?.description) step3Description.textContent = content.step3.description;
+                    if (step3Transcript && content.step3?.transcript) step3Transcript.textContent = `„${content.step3.transcript}”`;
+                    if (step3AudioTitle && content.step3?.audioTitle) step3AudioTitle.textContent = content.step3.audioTitle;
+
+                    if (step4Title && content.step4?.title) step4Title.textContent = content.step4.title;
+                    if (step4Description && content.step4?.description) step4Description.textContent = content.step4.description;
+
+                    if (step5Title && content.step5?.title) step5Title.textContent = content.step5.title;
+                    if (step5Description && content.step5?.description) step5Description.textContent = content.step5.description;
+                    if (step5QuestionLabel && content.step5?.questionLabel) step5QuestionLabel.textContent = content.step5.questionLabel;
+                    if (questionInput && content.step5?.questionPlaceholder) questionInput.placeholder = content.step5.questionPlaceholder;
+                    if (askAiBtn && content.step5?.buttonLabel) askAiBtn.textContent = content.step5.buttonLabel;
+                    if (step5Note && content.step5?.note) step5Note.textContent = content.step5.note;
+
+                    if (conclusionTitle && content.conclusion?.title) conclusionTitle.textContent = content.conclusion.title;
+                    if (conclusionText && content.conclusion?.text) conclusionText.textContent = content.conclusion.text;
+                    if (footerText && content.footer?.text) footerText.textContent = content.footer.text;
+
+                    const contextParts = [content.step1?.intro, content.step1?.expanded, content.step3?.transcript, content.conclusion?.text].filter(Boolean);
                     if (contextParts.length > 0) {
                         projectContextText = contextParts.join("\n\n");
                     }
@@ -435,7 +481,7 @@
                 step1ToggleBtn.addEventListener("click", () => {
                     const isHidden = step1ExpandableContent.classList.contains("hidden");
                     step1ExpandableContent.classList.toggle("hidden");
-                    step1ToggleBtn.textContent = isHidden ? "Suskleisti temos tekstą" : "Išskleisti temos tekstą";
+                    step1ToggleBtn.textContent = isHidden ? toggleLabels.collapse : toggleLabels.expand;
                 });
             }
 
