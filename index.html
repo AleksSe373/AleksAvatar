@@ -330,6 +330,20 @@
                 "proces"
             ];
 
+            const blockedKeywords = [
+                "oras",
+                "orai",
+                "bitcoin",
+                "kripto",
+                "akcij",
+                "futbol",
+                "krepsin",
+                "recept",
+                "kelion",
+                "polit",
+                "rinkim"
+            ];
+
             async function loadProjectContent() {
                 try {
                     const response = await fetch("./content.json", { cache: "no-store" });
@@ -451,9 +465,37 @@
                 });
             }
 
+            function normalizeForMatch(text) {
+                return (text || "")
+                    .toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[^a-z0-9\s]/g, " ")
+                    .replace(/\s+/g, " ")
+                    .trim();
+            }
+
             function isQuestionOnTopic(question) {
-                const normalized = question.toLowerCase();
-                return allowedTopicKeywords.some(keyword => normalized.includes(keyword));
+                const normalized = normalizeForMatch(question);
+                if (!normalized) {
+                    return false;
+                }
+
+                if (blockedKeywords.some(keyword => normalized.includes(keyword))) {
+                    return false;
+                }
+
+                const words = normalized.split(" ").filter(word => word.length >= 3);
+                if (words.length === 0) {
+                    return false;
+                }
+
+                const keywordMatches = allowedTopicKeywords.filter(keyword =>
+                    normalized.includes(keyword) || words.some(word => word.includes(keyword) || keyword.includes(word))
+                ).length;
+
+                // Leidžiame klausimus su bent vienu aiškiu atitikimu arba keliais silpnesniais atitikimais.
+                return keywordMatches >= 1 || words.some(word => word.startsWith("avat") || word.startsWith("mok") || word.startsWith("proj"));
             }
 
             function setAiState(statusText, answerText, isError = false) {
@@ -514,7 +556,7 @@
             }
 
             if (askAiBtn && questionInput) {
-                askAiBtn.addEventListener("click", async () => {
+                const submitQuestion = async () => {
                     const question = questionInput.value.trim();
                     const contextText = projectContextText;
 
@@ -529,7 +571,7 @@
                     }
 
                     if (!isQuestionOnTopic(question)) {
-                        setAiState("", "Galiu atsakyti tik apie šio avataro projekto temą.", true);
+                        setAiState("", "Galiu atsakyti tik apie šio avataro projekto temą. Ar klausei mūsų avataro?", true);
                         return;
                     }
 
@@ -545,6 +587,15 @@
                     } finally {
                         askAiBtn.disabled = false;
                         askAiBtn.classList.remove("opacity-60", "cursor-not-allowed");
+                    }
+                };
+
+                askAiBtn.addEventListener("click", submitQuestion);
+
+                questionInput.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" && !event.shiftKey) {
+                        event.preventDefault();
+                        submitQuestion();
                     }
                 });
             }
