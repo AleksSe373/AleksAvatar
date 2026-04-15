@@ -28,8 +28,8 @@
     "description": "Paskutinis akordas - visų sugeneruotų elementų apjungimas į šią interaktyvią svetainę naudojant Cursor redaktorių. LLM asistento pagalba leido sukurti dizainą ir animacijas be gilių programavimo žinių."
   },
   "step5": {
-    "title": "Noriu paklausti...",
-    "description": "Gal turite mums klausimų šia tema? Mielai atsakysime.",
+    "title": "Svetainės paleidimas ir aktyvavimas",
+    "description": "Svetainės paleidimui ir aktyvavimui įdarbinome GitHub, Netlify ir StudioAI.",
     "questionLabel": "Tavo klausimas",
     "questionPlaceholder": "Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?",
     "buttonLabel": "Gauti atsakymą",
@@ -43,6 +43,6 @@
     "collapseLabel": "Suskleisti išvadą"
   },
   "footer": {
-    "text": "Sukurta mokinių 2026-04-15"
+    "text": "Sukurta mokinių 2026-04-15<br>Dirbtinio intelekto produktyvumo įrankių taikymas"
   }
 }
