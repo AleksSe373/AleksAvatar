@@ -36,6 +36,7 @@ export const handler = async (event) => {
     }
 
     const question = String(payload.question || "").trim();
+    const context = String(payload.context || "").trim();
     if (question.length < 6) {
         return {
             statusCode: 400,
@@ -73,7 +74,11 @@ export const handler = async (event) => {
                 messages: [
                     {
                         role: "system",
-                        content: "Atsakyk tik į klausimus apie AI avataro kūrimo procesą šiame projekte: temos pasirinkimas, Gemini vaizdas, ElevenLabs balsas, HeyGen video, Cursor svetainė, mokymosi patirtis FastTrack kontekste. Jei klausimas nesusijęs su šia tema, mandagiai atsisakyk ir parašyk: 'Galiu atsakyti tik apie šio avataro projekto temą.' Atsakyk lietuviškai, glaustai ir aiškiai."
+                        content: "Atsakyk tik į klausimus apie AI avataro kūrimo procesą šiame projekte: temos pasirinkimas, Gemini vaizdas, ElevenLabs balsas, HeyGen video, Cursor svetainė, mokymosi patirtis FastTrack kontekste. Jei klausimas nesusijęs su šia tema, mandagiai atsisakyk ir parašyk: 'Galiu atsakyti tik apie šio avataro projekto temą.' Jei pateiktas papildomas projekto tekstas, remkis juo kaip pagrindiniu informacijos šaltiniu. Atsakyk lietuviškai, glaustai ir aiškiai."
+                    },
+                    {
+                        role: "user",
+                        content: `Papildomas projekto tekstas (kontekstas):\n${context.slice(0, 2000)}`
                     },
                     {
                         role: "user",
