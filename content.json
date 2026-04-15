@@ -29,8 +29,8 @@
   },
   "step5": {
     "title": "Svetainės paleidimas ir aktyvavimas",
-    "description": "Svetainės paleidimui ir aktyvavimui įdarbinome GitHub, Netlify ir StudioAI.",
-    "questionLabel": "Tavo klausimas",
+    "description": "Svetainės paleidimui ir aktyvavimui įdarbinome GitHub (kodo saugojimui ir versijavimui) ir Netlify (publikavimui internete).",
+    "questionLabel": "Užduok man klausimą",
     "questionPlaceholder": "Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?",
     "buttonLabel": "Gauti atsakymą",
     "note": "AI atsakymai generuojami per atskirą serverio API. Klausimai ne į šio projekto temą bus atmesti."
@@ -43,6 +43,6 @@
     "collapseLabel": "Suskleisti išvadą"
   },
   "footer": {
-    "text": "Sukurta mokinių 2026-04-15<br>Dirbtinio intelekto produktyvumo įrankių taikymas"
+    "text": "Dirbtinio intelekto produktyvumo įrankių taikymas. Sukurta mokinių 2026-04-15"
   }
 }

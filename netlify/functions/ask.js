@@ -57,7 +57,7 @@ export const handler = async (event) => {
         return {
             statusCode: 200,
             headers: corsHeaders(),
-            body: JSON.stringify({ answer: "Galiu atsakyti tik apie šio avataro projekto temą." })
+            body: JSON.stringify({ answer: "Galiu atsakyti tik apie šio avataro projekto temą. Ar klausei mūsų avataro?" })
         };
     }
 
@@ -74,7 +74,7 @@ export const handler = async (event) => {
                 messages: [
                     {
                         role: "system",
-                        content: "Atsakyk tik į klausimus apie AI avataro kūrimo procesą šiame projekte: temos pasirinkimas, Gemini vaizdas, ElevenLabs balsas, HeyGen video, Cursor svetainė, mokymosi patirtis FastTrack kontekste. Jei klausimas nesusijęs su šia tema, mandagiai atsisakyk ir parašyk: 'Galiu atsakyti tik apie šio avataro projekto temą.' Jei pateiktas papildomas projekto tekstas, remkis juo kaip pagrindiniu informacijos šaltiniu. Atsakyk lietuviškai, glaustai ir aiškiai."
+                        content: "Atsakyk tik į klausimus apie AI avataro kūrimo procesą šiame projekte: temos pasirinkimas, Gemini vaizdas, ElevenLabs balsas, HeyGen video, Cursor svetainė, mokymosi patirtis FastTrack kontekste. Jei klausimas nesusijęs su šia tema, mandagiai atsisakyk ir parašyk: 'Galiu atsakyti tik apie šio avataro projekto temą. Ar klausei mūsų avataro?' Jei pateiktas papildomas projekto tekstas, remkis juo kaip pagrindiniu informacijos šaltiniu. Atsakyk lietuviškai, glaustai ir aiškiai."
                     },
                     {
                         role: "user",
