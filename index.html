@@ -69,9 +69,19 @@
                 <div class="text-center">
                     <span class="text-cyan-400 font-bold tracking-wider uppercase text-sm">1 Žingsnis</span>
                     <h2 class="text-3xl font-bold mt-2 mb-4">Temos pasirinkimas</h2>
-                    <p class="text-gray-300 max-w-2xl mx-auto">
+                    <p id="step1-intro-text" class="text-gray-300 max-w-2xl mx-auto">
                         Pradžia - aiškios temos pasirinkimas. Pirmiausia apsibrėžiame žinutę, tikslą ir auditoriją, kad visi tolimesni žingsniai (vaizdas, balsas, video ir svetainė) turėtų vieningą kryptį.
                     </p>
+                    <div class="mt-5">
+                        <button id="step1-toggle-btn" type="button" class="px-5 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-300">
+                            Išskleisti temos tekstą
+                        </button>
+                    </div>
+                    <div id="step1-expandable-content" class="hidden mt-5 text-left max-w-3xl mx-auto bg-black/30 border border-cyan-800/50 rounded-xl p-5">
+                        <p id="step1-source-text" class="text-gray-300 leading-relaxed">
+                            Šio projekto tema - asmeninė kelionė nuo pradinio neapsisprendimo iki veikiančio AI avataro sukūrimo. Pagrindinis fokusas yra praktinis mokymasis FastTrack aplinkoje: temos pasirinkimas, AI vaizdo generavimas su Gemini, balso kūrimas su ElevenLabs, kalbančio avataro formavimas su HeyGen ir galutinis sprendimo pateikimas internetinėje svetainėje su Cursor. Esminė žinutė: net ir pradedant nuo minimalių žinių, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia sukurti realų, veikiantį rezultatą.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -203,7 +213,7 @@
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
 
                 <h3 class="text-2xl font-bold mb-4">Išvada</h3>
-                <p class="text-lg text-gray-200 italic max-w-3xl mx-auto">
+                <p id="conclusion-text" class="text-lg text-gray-200 italic max-w-3xl mx-auto">
                     Per šį projektą aiškiai matomas visas kelias – nuo pradinės idėjos iki pilnai veikiančio AI avataro su balsu, video ir pristatomąja svetaine. Projektas parodo, kad net neturint didelės pradinės patirties, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia greitai pasiekti tinkamą rezultatą. Didžiausia vertė slypi ne tik galutiniame rezultate, bet ir pačiame procese bei kiekviename žingsnyje.
                 </p>
             </div>
@@ -223,7 +233,7 @@
 
     <!-- JavaScript sklandžioms animacijoms slenkant -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", async function() {
             const observerOptions = {
                 root: null,
                 rootMargin: "0px",
@@ -258,7 +268,13 @@
             const questionInput = document.getElementById("topic-question");
             const aiAnswerBox = document.getElementById("ai-answer-box");
             const aiStatus = document.getElementById("ai-status");
-            const backendApiUrl = "https://aleks-avatar.netlify.app/api/ask";
+            const step1ToggleBtn = document.getElementById("step1-toggle-btn");
+            const step1ExpandableContent = document.getElementById("step1-expandable-content");
+            const step1IntroText = document.getElementById("step1-intro-text");
+            const step1SourceText = document.getElementById("step1-source-text");
+            const conclusionText = document.getElementById("conclusion-text");
+            const backendApiUrl = "https://aleks-avatar.netlify.app/.netlify/functions/ask";
+            let projectContextText = step1SourceText ? step1SourceText.textContent.trim() : "";
 
             const allowedTopicKeywords = [
                 "ai",
@@ -279,6 +295,35 @@
                 "mokym",
                 "proces"
             ];
+
+            async function loadProjectContent() {
+                try {
+                    const response = await fetch("./content.json", { cache: "no-store" });
+                    if (!response.ok) {
+                        return;
+                    }
+                    const content = await response.json();
+
+                    if (step1IntroText && content.step1Intro) {
+                        step1IntroText.textContent = content.step1Intro;
+                    }
+                    if (step1SourceText && content.step1Expanded) {
+                        step1SourceText.textContent = content.step1Expanded;
+                    }
+                    if (conclusionText && content.conclusion) {
+                        conclusionText.textContent = content.conclusion;
+                    }
+
+                    const contextParts = [content.step1Intro, content.step1Expanded, content.conclusion].filter(Boolean);
+                    if (contextParts.length > 0) {
+                        projectContextText = contextParts.join("\n\n");
+                    }
+                } catch (_) {
+                    // Tyliai paliekame fallback tekstą iš HTML, jei content.json nepasiekiamas.
+                }
+            }
+
+            await loadProjectContent();
 
             function openLightbox() {
                 if (!avatarContainer || !lightbox || !lightboxImg) {
@@ -364,14 +409,15 @@
                 }
             }
 
-            async function askTopicApi(question) {
+            async function askTopicApi(question, contextText) {
                 const response = await fetch(backendApiUrl, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        question: question
+                        question: question,
+                        context: contextText
                     })
                 });
 
@@ -385,9 +431,18 @@
                 return data?.answer || "Atsakymas negautas.";
             }
 
+            if (step1ToggleBtn && step1ExpandableContent) {
+                step1ToggleBtn.addEventListener("click", () => {
+                    const isHidden = step1ExpandableContent.classList.contains("hidden");
+                    step1ExpandableContent.classList.toggle("hidden");
+                    step1ToggleBtn.textContent = isHidden ? "Suskleisti temos tekstą" : "Išskleisti temos tekstą";
+                });
+            }
+
             if (askAiBtn && questionInput) {
                 askAiBtn.addEventListener("click", async () => {
                     const question = questionInput.value.trim();
+                    const contextText = projectContextText;
 
                     if (backendApiUrl.includes("YOUR-BACKEND-DOMAIN")) {
                         setAiState("", "Nustatyk backend API URL kintamajame backendApiUrl.", true);
@@ -409,7 +464,7 @@
                     setAiState("AI galvoja...", "");
 
                     try {
-                        const answer = await askTopicApi(question);
+                        const answer = await askTopicApi(question, contextText);
                         setAiState("Atsakymas paruoštas.", answer, false);
                     } catch (error) {
                         setAiState("", `Klaida: ${error.message}`, true);
