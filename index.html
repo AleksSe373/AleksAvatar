@@ -164,6 +164,38 @@
             </div>
         </section>
 
+        <!-- 5 Žingsnis: Klausimai apie avataro temą -->
+        <section class="fade-in-section">
+            <div class="glass-card rounded-2xl p-8 border-t-4 border-t-emerald-500 hover:bg-white/10 transition duration-300">
+                <div class="text-center mb-6">
+                    <span class="text-emerald-400 font-bold tracking-wider uppercase text-sm">5 Žingsnis</span>
+                    <h2 class="text-3xl font-bold mt-2 mb-4">Klausk AI apie šią temą</h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto">
+                        Įrašyk klausimą apie šiame puslapyje aptariamą temą. AI atsakys tik apie avataro kūrimo procesą, FastTrack mokymąsi ir naudojamus įrankius.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block">
+                        <span class="text-sm text-gray-300">Tavo klausimas</span>
+                        <textarea id="topic-question" rows="4" placeholder="Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?" class="mt-1 w-full rounded-lg bg-black/30 border border-gray-700 px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
+                    </label>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button id="ask-ai-btn" type="button" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-lg text-white font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-300">
+                            Gauti atsakymą
+                        </button>
+                        <span id="ai-status" class="text-sm text-gray-400"></span>
+                    </div>
+
+                    <div id="ai-answer-box" class="hidden bg-black/40 p-5 rounded-lg border-l-4 border-emerald-500 text-gray-200 leading-relaxed"></div>
+                    <p class="text-xs text-gray-500">
+                        AI atsakymai generuojami per atskirą serverio API. Klausimai ne į šio projekto temą bus atmesti.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Padėka -->
         <section class="fade-in-section pt-10">
             <div class="bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-2xl p-8 text-center border border-blue-500/30 relative overflow-hidden">
@@ -172,7 +204,7 @@
 
                 <h3 class="text-2xl font-bold mb-4">Išvada</h3>
                 <p class="text-lg text-gray-200 italic max-w-3xl mx-auto">
-                    Per šį projektą aiškiai matosi visas kelias: nuo temos pasirinkimo iki veikiančio AI avataro su balsu, video ir pristatomąja svetaine. Svarbiausia pamoka - net pradedant nuo nulio, nuoseklus procesas ir tinkami įrankiai leidžia greitai pasiekti profesionalų rezultatą.
+                    Per šį projektą aiškiai matomas visas kelias – nuo pradinės idėjos iki pilnai veikiančio AI avataro su balsu, video ir pristatomąja svetaine. Projektas parodo, kad net neturint didelės pradinės patirties, nuoseklus procesas ir tinkamai parinkti įrankiai leidžia greitai pasiekti tinkamą rezultatą. Didžiausia vertė slypi ne tik galutiniame rezultate, bet ir pačiame procese bei kiekviename žingsnyje.
                 </p>
             </div>
         </section>
@@ -222,6 +254,31 @@
             const lightboxImg = document.getElementById("lightbox-img");
             const mediaVideo = document.querySelector("video");
             const mediaAudio = document.querySelector("audio");
+            const askAiBtn = document.getElementById("ask-ai-btn");
+            const questionInput = document.getElementById("topic-question");
+            const aiAnswerBox = document.getElementById("ai-answer-box");
+            const aiStatus = document.getElementById("ai-status");
+            const backendApiUrl = "https://YOUR-BACKEND-DOMAIN/api/ask";
+
+            const allowedTopicKeywords = [
+                "ai",
+                "avatar",
+                "fasttrack",
+                "deividas",
+                "elevenlabs",
+                "heygen",
+                "gemini",
+                "cursor",
+                "llm",
+                "bals",
+                "video",
+                "vaizd",
+                "tema",
+                "projekt",
+                "svetain",
+                "mokym",
+                "proces"
+            ];
 
             function openLightbox() {
                 if (!avatarContainer || !lightbox || !lightboxImg) {
@@ -280,6 +337,86 @@
 
                 mediaAudio.addEventListener("play", () => {
                     mediaVideo.pause();
+                });
+            }
+
+            function isQuestionOnTopic(question) {
+                const normalized = question.toLowerCase();
+                return allowedTopicKeywords.some(keyword => normalized.includes(keyword));
+            }
+
+            function setAiState(statusText, answerText, isError = false) {
+                if (aiStatus) {
+                    aiStatus.textContent = statusText || "";
+                    aiStatus.className = isError ? "text-sm text-red-400" : "text-sm text-gray-400";
+                }
+
+                if (aiAnswerBox) {
+                    if (answerText) {
+                        aiAnswerBox.textContent = answerText;
+                        aiAnswerBox.classList.remove("hidden");
+                        aiAnswerBox.classList.toggle("border-red-500", isError);
+                        aiAnswerBox.classList.toggle("border-emerald-500", !isError);
+                    } else {
+                        aiAnswerBox.classList.add("hidden");
+                        aiAnswerBox.textContent = "";
+                    }
+                }
+            }
+
+            async function askTopicApi(question) {
+                const response = await fetch(backendApiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        question: question
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorPayload = await response.json().catch(() => ({}));
+                    const errorMessage = errorPayload?.error || errorPayload?.message || "Nepavyko gauti atsakymo iš AI serverio.";
+                    throw new Error(errorMessage);
+                }
+
+                const data = await response.json();
+                return data?.answer || "Atsakymas negautas.";
+            }
+
+            if (askAiBtn && questionInput) {
+                askAiBtn.addEventListener("click", async () => {
+                    const question = questionInput.value.trim();
+
+                    if (backendApiUrl.includes("YOUR-BACKEND-DOMAIN")) {
+                        setAiState("", "Nustatyk backend API URL kintamajame backendApiUrl.", true);
+                        return;
+                    }
+
+                    if (question.length < 6) {
+                        setAiState("", "Klausimas per trumpas. Įrašyk bent kelis žodžius.", true);
+                        return;
+                    }
+
+                    if (!isQuestionOnTopic(question)) {
+                        setAiState("", "Galiu atsakyti tik apie šio avataro projekto temą.", true);
+                        return;
+                    }
+
+                    askAiBtn.disabled = true;
+                    askAiBtn.classList.add("opacity-60", "cursor-not-allowed");
+                    setAiState("AI galvoja...", "");
+
+                    try {
+                        const answer = await askTopicApi(question);
+                        setAiState("Atsakymas paruoštas.", answer, false);
+                    } catch (error) {
+                        setAiState("", `Klaida: ${error.message}`, true);
+                    } finally {
+                        askAiBtn.disabled = false;
+                        askAiBtn.classList.remove("opacity-60", "cursor-not-allowed");
+                    }
                 });
             }
         });
