@@ -37,27 +37,12 @@ export const handler = async (event) => {
 
     const question = String(payload.question || "").trim();
     const context = String(payload.context || "").trim();
-    if (question.length < 6) {
+    const questionWords = question.split(/\s+/).filter(Boolean);
+    if (questionWords.length < 2) {
         return {
             statusCode: 400,
             headers: corsHeaders(),
-            body: JSON.stringify({ error: "Klausimas per trumpas." })
-        };
-    }
-
-    const allowedTopicKeywords = [
-        "ai", "avatar", "fasttrack", "deividas", "elevenlabs", "heygen", "gemini",
-        "cursor", "llm", "bals", "video", "vaizd", "tema", "projekt", "svetain",
-        "mokym", "proces"
-    ];
-    const normalized = question.toLowerCase();
-    const onTopic = allowedTopicKeywords.some((keyword) => normalized.includes(keyword));
-
-    if (!onTopic) {
-        return {
-            statusCode: 200,
-            headers: corsHeaders(),
-            body: JSON.stringify({ answer: "Galiu atsakyti tik apie šio avataro projekto temą. Ar klausei mūsų avataro?" })
+            body: JSON.stringify({ error: "Klausimui pakanka 2 žodžių. Įrašyk bent du žodžius." })
         };
     }
 
@@ -74,7 +59,7 @@ export const handler = async (event) => {
                 messages: [
                     {
                         role: "system",
-                        content: "Atsakyk tik į klausimus apie AI avataro kūrimo procesą šiame projekte: temos pasirinkimas, Gemini vaizdas, ElevenLabs balsas, HeyGen video, Cursor svetainė, mokymosi patirtis FastTrack kontekste. Jei klausimas nesusijęs su šia tema, mandagiai atsisakyk ir parašyk: 'Galiu atsakyti tik apie šio avataro projekto temą. Ar klausei mūsų avataro?' Jei pateiktas papildomas projekto tekstas, remkis juo kaip pagrindiniu informacijos šaltiniu. Atsakyk lietuviškai, glaustai ir aiškiai."
+                        content: "Atsakyk lietuviškai, glaustai ir aiškiai. Vadovaukis visu pateiktu projekto kontekstu nuo A iki Z (visų žingsnių aprašymai, naudoti įrankiai ir mokymosi patirtis). Jei klausimas trumpas, su sutrumpinimais ar tik iš 2 žodžių, vis tiek atsakyk pagal kontekstą."
                     },
                     {
                         role: "user",

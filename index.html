@@ -179,7 +179,7 @@
         <section class="fade-in-section">
             <div class="glass-card rounded-2xl p-8 border-t-4 border-t-emerald-500 hover:bg-white/10 transition duration-300">
                 <div class="text-center mb-6">
-                    <span class="text-emerald-400 font-bold tracking-wider uppercase text-sm">5 Žingsnis.</span>
+                    <span class="text-emerald-400 font-bold tracking-wider uppercase text-sm">5 Žingsnis</span>
                     <h2 id="step5-title" class="text-3xl font-bold mt-2 mb-4">Svetainės paleidimas ir aktyvavimas</h2>
                     <p id="step5-description" class="text-gray-300 max-w-2xl mx-auto">
                         Svetainės paleidimui ir aktyvavimui įdarbinome GitHub (kodo saugojimui ir versijavimui) ir Netlify (publikavimui internete).
@@ -188,7 +188,7 @@
 
                 <div class="space-y-4">
                     <label class="block max-w-xl mx-auto">
-                        <span id="step5-question-label" class="text-sm text-gray-300">Užduok man klausimą</span>
+                        <span id="step5-question-label" class="text-sm text-gray-300">Turbūt turi klausimų? Užduok savo klausimą.</span>
                         <textarea id="topic-question" rows="4" placeholder="Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?" class="mt-1 w-full rounded-lg bg-black/30 border border-gray-700 px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
                     </label>
 
@@ -312,40 +312,6 @@
             let toggleLabels = { expand: "Išskleisti temos tekstą", collapse: "Suskleisti temos tekstą" };
             let conclusionToggleLabels = { expand: "Išskleisti išvadą", collapse: "Suskleisti išvadą" };
 
-            const allowedTopicKeywords = [
-                "ai",
-                "avatar",
-                "fasttrack",
-                "deividas",
-                "elevenlabs",
-                "heygen",
-                "gemini",
-                "cursor",
-                "llm",
-                "bals",
-                "video",
-                "vaizd",
-                "tema",
-                "projekt",
-                "svetain",
-                "mokym",
-                "proces"
-            ];
-
-            const blockedKeywords = [
-                "oras",
-                "orai",
-                "bitcoin",
-                "kripto",
-                "akcij",
-                "futbol",
-                "krepsin",
-                "recept",
-                "kelion",
-                "polit",
-                "rinkim"
-            ];
-
             async function loadProjectContent() {
                 try {
                     const response = await fetch("./content.json", { cache: "no-store" });
@@ -397,7 +363,27 @@
                     };
                     if (footerText && content.footer?.text) footerText.textContent = content.footer.text;
 
-                    const contextParts = [content.step1?.intro, content.step1?.expanded, content.step3?.transcript, content.conclusion?.text, content.conclusion?.expanded].filter(Boolean);
+                    const contextParts = [
+                        content.hero?.title,
+                        content.hero?.subtitle,
+                        content.step1?.title,
+                        content.step1?.intro,
+                        content.step1?.expanded,
+                        content.step2?.title,
+                        content.step2?.description,
+                        content.step3?.title,
+                        content.step3?.description,
+                        content.step3?.transcript,
+                        content.step3?.audioTitle,
+                        content.step3?.videoTitle,
+                        content.step4?.title,
+                        content.step4?.description,
+                        content.step5?.title,
+                        content.step5?.description,
+                        content.conclusion?.title,
+                        content.conclusion?.text,
+                        content.conclusion?.expanded
+                    ].filter(Boolean);
                     if (contextParts.length > 0) {
                         projectContextText = contextParts.join("\n\n");
                     }
@@ -468,37 +454,9 @@
                 });
             }
 
-            function normalizeForMatch(text) {
-                return (text || "")
-                    .toLowerCase()
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .replace(/[^a-z0-9\s]/g, " ")
-                    .replace(/\s+/g, " ")
-                    .trim();
-            }
-
-            function isQuestionOnTopic(question) {
-                const normalized = normalizeForMatch(question);
-                if (!normalized) {
-                    return false;
-                }
-
-                if (blockedKeywords.some(keyword => normalized.includes(keyword))) {
-                    return false;
-                }
-
-                const words = normalized.split(" ").filter(word => word.length >= 3);
-                if (words.length === 0) {
-                    return false;
-                }
-
-                const keywordMatches = allowedTopicKeywords.filter(keyword =>
-                    normalized.includes(keyword) || words.some(word => word.includes(keyword) || keyword.includes(word))
-                ).length;
-
-                // Leidžiame klausimus su bent vienu aiškiu atitikimu arba keliais silpnesniais atitikimais.
-                return keywordMatches >= 1 || words.some(word => word.startsWith("avat") || word.startsWith("mok") || word.startsWith("proj"));
+            function hasAtLeastTwoWords(text) {
+                const words = (text || "").trim().split(/\s+/).filter(Boolean);
+                return words.length >= 2;
             }
 
             function setAiState(statusText, answerText, isError = false) {
@@ -568,13 +526,8 @@
                         return;
                     }
 
-                    if (question.length < 6) {
-                        setAiState("", "Klausimas per trumpas. Įrašyk bent kelis žodžius.", true);
-                        return;
-                    }
-
-                    if (!isQuestionOnTopic(question)) {
-                        setAiState("", "Galiu atsakyti tik apie šio avataro projekto temą. Ar klausei mūsų avataro?", true);
+                    if (!hasAtLeastTwoWords(question)) {
+                        setAiState("", "Klausimui pakanka 2 žodžių. Įrašyk bent du žodžius.", true);
                         return;
                     }
 

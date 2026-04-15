@@ -30,7 +30,7 @@
   "step5": {
     "title": "Svetainės paleidimas ir aktyvavimas",
     "description": "Svetainės paleidimui ir aktyvavimui įdarbinome GitHub (kodo saugojimui ir versijavimui) ir Netlify (publikavimui internete).",
-    "questionLabel": "Užduok man klausimą",
+    "questionLabel": "Turbūt turi klausimų? Užduok savo klausimą.",
     "questionPlaceholder": "Pvz.: Kokie buvo pagrindiniai žingsniai kuriant šį AI avatarą?",
     "buttonLabel": "Gauti atsakymą",
     "note": "AI atsakymai generuojami per atskirą serverio API. Klausimai ne į šio projekto temą bus atmesti."
